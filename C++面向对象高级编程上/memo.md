@@ -73,8 +73,8 @@ complex (double r=0, double i =0) : re(r), im(i)
 # 4.参数传递与返回值
 
 ## 常量成员函数(const member functions)
-* 会改变变量的函数
-* 不会改变变量的函数
+* ### 会改变变量的函数
+* ### 不会改变变量的函数
 ```cpp
 double real() const {return re;}    // 在函数后面加const
 ```
@@ -85,3 +85,56 @@ double real() const {return re;}    // 在函数后面加const
     cout << c1.real;    //调用时会报错
 }
 ```
+
+## 参数传递
+### 1.pass by value
+### 2.pass by reference
+* 底层上是传递指针，速度很快
+* 可以传常量引用
+* 指针占用8byte，int占用4byte
+### 3.不可以pass by referce的情况
+* 函数内生成的对象（临时对象）不能用引用的形式传递
+## friend(友元)
+### 1.直接拿数据
+* 速度快，比调用函数效率高
+* 打破了封装，有风险
+### 2.对于一个相同的Class，各个object之间互为友元
+
+> 注意：  
+> 1.Class的数据要放进private里面  
+> 2.传递尽量用引用 const看情况  
+> 3.返回值尽量用引用  
+> 4.尽可能考虑const设计  
+> 5.构造函数要利用初始化列
+
+# 5. 操作符重载与临时对象
+
+## 操作符重载(operator overloading)
+```cpp
+{
+    complex c1(2,1);
+    complex c2(5);
+
+    c2 += c1;
+}
+```
+```cpp
+inline complex& __doapl(complex* ths, const complex& r)  //do assignment plus
+{
+    ths->re += r.re;
+    ths->im += r.im;
+    return *ths;
+}
+inline complex& complex::operator += (const complex& r)
+{
+    return __doapl (this, r);
+}
+```
+### 1.this
+* 是一个指针，指向被调用的对象
+* 在成员函数中不显式声明
+
+### 2. += 本质上是一个函数
+
+## return by reference 语法分析
+* 传递者无需知道接受者是以何种引用形式接收（接收value，接收引用都可以）

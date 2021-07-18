@@ -5,8 +5,7 @@ using std::cout; using std::endl;
 
 int main(void)
 {
-    int a = 'a'-'A';
-    char b = 'b'-a;
-    cout << b <<endl;
+    int *p = nullptr;
+    cout << sizeof(int) <<endl;
     return 0;
 }
