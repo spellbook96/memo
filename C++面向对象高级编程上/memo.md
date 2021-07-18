@@ -71,3 +71,17 @@ complex (double r=0, double i =0) : re(r), im(i)
 ?real@Conplex@@QBENABN@AB
 
 # 4.参数传递与返回值
+
+## 常量成员函数(const member functions)
+* 会改变变量的函数
+* 不会改变变量的函数
+```cpp
+double real() const {return re;}    // 在函数后面加const
+```
+> 如果不加const的话，创建const对象的时候会无法调用
+```cpp
+{
+    const complex c1(2,1);
+    cout << c1.real;    //调用时会报错
+}
+```
