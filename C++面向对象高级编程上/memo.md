@@ -109,7 +109,7 @@ double real() const {return re;}    // 在函数后面加const
 
 # 5. 操作符重载与临时对象
 
-## 操作符重载(operator overloading)
+## 5.1 操作符重载(operator overloading)
 ```cpp
 {
     complex c1(2,1);
@@ -130,21 +130,23 @@ inline complex& complex::operator += (const complex& r)
     return __doapl (this, r);
 }
 ```
-### 1.this
-* 是一个指针，指向被调用的对象
-* 在成员函数中不显式声明
+* ### this
+    * 是一个指针，指向被调用的对象
+    * 在成员函数中不显式声明
 
-### 2. += 本质上是一个函数
+* ###  += 本质上是一个函数
 
-### 3. return by reference 语法分析
-* 传递者无需知道接受者是以何种引用形式接收（接收value，接收引用都可以）
+* ###  return by reference 语法分析
+    * 传递者无需知道接受者是以何种引用形式接收（接收value，接收引用都可以）
 
 ```cpp
 c3 += c2 += c1;
 ```
-连串使用的时候必须是左值，不能是value右值
-
-## 非成员操作符重载(operator overloading)
+连串使用的时候必须是左值，不能是value右值  
+        
+    import python
+    
+## 5-2 非成员操作符重载(operator overloading)
 为了应对client的三种可能用法，需定义三种函数。例子并不全面
 ```cpp
 {
