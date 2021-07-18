@@ -72,7 +72,7 @@ complex (double r=0, double i =0) : re(r), im(i)
 
 # 4.参数传递与返回值
 
-## 4.1 常量成员函数(const member functions)
+## 4-1. 常量成员函数(const member functions)
 * ### 会改变变量的函数
 * ### 不会改变变量的函数
 ```cpp
@@ -86,7 +86,7 @@ double real() const {return re;}    // 在函数后面加const
 }
 ```
 
-## 4.2 参数传递
+## 4-2. 参数传递
 * ### pass by value
 * ### pass by reference
     * 底层上是传递指针，速度很快
@@ -94,7 +94,7 @@ double real() const {return re;}    // 在函数后面加const
     * 指针占用8byte，int占用4byte
 * ### 不可以pass by referce的情况
     * 函数内生成的对象（临时对象）不能用引用的形式传递
-## 4.3 friend(友元)
+## 4-3. friend(友元)
 * ### 直接拿数据
     * 速度快，比调用函数效率高
     * 打破了封装，有风险
@@ -109,7 +109,7 @@ double real() const {return re;}    // 在函数后面加const
 
 # 5. 操作符重载与临时对象
 
-## 5.1 操作符重载(operator overloading)
+## 5-1. 操作符重载(operator overloading)
 ```cpp
 {
     complex c1(2,1);
