@@ -1,7 +1,7 @@
 # 1.C++编程简介
 # 2.头文件与类的声明
 
-* ## 头文件的声明  
+## 2-1. 头文件的声明  
 ```cpp
 #ifndef __COMPLEX__
 #define __COMPLEX__
@@ -12,7 +12,7 @@
 #endif
 
 ```
-* ## Class的声明
+## 2-2. Class的声明
 
 ```cpp
 class complex
@@ -32,11 +32,11 @@ private:
 
 # 3.构造函数
 
-## 内联函数
+## 3-1. 内联函数
 * 拥有宏的特性，没有宏的缺点（宏是C的概念)
 * 快
 
-## 宏（C）
+## 3-2. 宏（C）
 * #define 定义
 * 没有参数的宏
 * 太复杂的话编译器就无法编程inline
@@ -49,11 +49,11 @@ private:
 #define 宏名称( [形参列表] ) 替换文本
 #define 宏名称( [形参列表 ,] ... ) 替换文本
 ```
-## 访问级别(access level)
+## 3-3.访问级别(access level)
 * public
 * private
 
-## 构造函数（初始化函数）
+## 3-4. 构造函数（初始化函数）
 
 ```cpp
 complex (double r=0, double i =0) : re(r), im(i)
@@ -72,7 +72,7 @@ complex (double r=0, double i =0) : re(r), im(i)
 
 # 4.参数传递与返回值
 
-## 常量成员函数(const member functions)
+## 4.1 常量成员函数(const member functions)
 * ### 会改变变量的函数
 * ### 不会改变变量的函数
 ```cpp
@@ -86,19 +86,19 @@ double real() const {return re;}    // 在函数后面加const
 }
 ```
 
-## 参数传递
-### 1.pass by value
-### 2.pass by reference
-* 底层上是传递指针，速度很快
-* 可以传常量引用
-* 指针占用8byte，int占用4byte
-### 3.不可以pass by referce的情况
-* 函数内生成的对象（临时对象）不能用引用的形式传递
-## friend(友元)
-### 1.直接拿数据
-* 速度快，比调用函数效率高
-* 打破了封装，有风险
-### 2.对于一个相同的Class，各个object之间互为友元
+## 4.2 参数传递
+* ### pass by value
+* ### pass by reference
+    * 底层上是传递指针，速度很快
+    * 可以传常量引用
+    * 指针占用8byte，int占用4byte
+* ### 不可以pass by referce的情况
+    * 函数内生成的对象（临时对象）不能用引用的形式传递
+## 4.3 friend(友元)
+* ### 直接拿数据
+    * 速度快，比调用函数效率高
+    * 打破了封装，有风险
+* ### 对于一个相同的Class，各个object之间互为友元
 
 > 注意：  
 > 1.Class的数据要放进private里面  
@@ -142,10 +142,9 @@ inline complex& complex::operator += (const complex& r)
 ```cpp
 c3 += c2 += c1;
 ```
-连串使用的时候必须是左值，不能是value右值  
-        
-    import python
-    
+>连串使用的时候必须是左值，不能是value右值  
+
+
 ## 5-2 非成员操作符重载(operator overloading)
 为了应对client的三种可能用法，需定义三种函数。例子并不全面
 ```cpp
