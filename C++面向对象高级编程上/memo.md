@@ -136,5 +136,41 @@ inline complex& complex::operator += (const complex& r)
 
 ### 2. += 本质上是一个函数
 
-## return by reference 语法分析
+### 3. return by reference 语法分析
 * 传递者无需知道接受者是以何种引用形式接收（接收value，接收引用都可以）
+
+```cpp
+c3 += c2 += c1;
+```
+连串使用的时候必须是左值，不能是value右值
+
+## 非成员操作符重载(operator overloading)
+为了应对client的三种可能用法，需定义三种函数。例子并不全面
+```cpp
+{
+    complex c1(2,1);
+    complex c2;
+
+    c2 = c1 + c2;
+    c2 = c1 + 5;
+    c2 = 7 + c1;
+}
+```
+```cpp
+inline complex operator + (const complex& x, const complex& y)  //这里是全局函数
+{
+    return complex (real(x) + real(y), imag(x) + imag(y)); //real imag 也是单独定义的全局函数
+}
+
+inline complex operator + (const complex& x, double y)
+{
+    return complex (real(x) + y, imag(x));
+}
+
+inline complex operator + (double x, const complex& y)
+{
+    return complex (x + real(y), imag(y));
+}
+```
+> 为什么这里不返回引用？  
+> 因为返回的是临时变量，所以必须返回对象。
