@@ -61,7 +61,8 @@ complex (double r=0, double i =0) : re(r), im(i)
 ```
 * 没有返回类型
 * 使用初始列，初始化  
-> why? Class创建时第一阶段为初始化阶段，不使用等于放弃这一阶段，降低了效率
+> why?  
+> Class创建时第一阶段为初始化阶段，不使用等于放弃这一阶段，降低了效率
 ```cpp
 : re(r),im(i) 
 ```
@@ -142,7 +143,7 @@ inline complex& complex::operator += (const complex& r)
 ```cpp
 c3 += c2 += c1;
 ```
->连串使用的时候必须是左值，不能是value右值  
+> 连串使用的时候必须是左值，不能是value右值  
 
 
 ## 5-2 非成员操作符重载(operator overloading)
@@ -175,3 +176,29 @@ inline complex operator + (double x, const complex& y)
 ```
 > Q:为什么这里不返回引用？  
 > A:因为返回的是临时变量，所以必须返回对象。
+
+*  ### 临时对象 typename()
+* ### << output operator
+    * 返回值注意要是osteam& 类型 （因为cout << c(1) << c(2)）
+```cpp
+ostream& operator << (ostream& os, const complex& x)
+{
+    return os << '(' << real(x) << ',' << imag(x) << ')';
+```
+
+# 7.三大函数：拷贝构造，拷贝复制，析构.
+
+```cpp
+class String
+{
+    public:
+        String(const char* cstr =0);          //构造 函数
+        String(const String& str);            //拷贝构造 函数
+        String& operator=(const String& str); //拷贝赋值 函数
+        ~String();                            //析构 函数
+
+        char* get_c_str() const{ return m_data; };
+    private:
+        char* m_data;
+}
+```
