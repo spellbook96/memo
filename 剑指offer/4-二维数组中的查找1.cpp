@@ -32,16 +32,16 @@ bool Find(int target, vector<vector<int>> array)
 int main()
 {
     int m = 4; int n =4;
-    vector<vector<int> >array(m);
+    vector<vector<int> >array(m,vector<int>(n,0));
 
-    for (int i=0;i<m;++i)
-    {
-        array[i].resize(n);
-    }
+    // for (int i=0;i<m;++i)
+    // {
+    //     array[i].resize(n);
+    // }
     array[0]={1,2,8,9};
     array[1]={2,4,9,12};
     array[2]={4,7,10,13};
     array[3]={6,8,11,15};
-    cout << Find(7,array) << endl;
-    return 0;
+    cout << Find(1,array) << endl;
+    return 0;   
 }

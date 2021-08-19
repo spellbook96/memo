@@ -186,8 +186,8 @@ ostream& operator << (ostream& os, const complex& x)
     return os << '(' << real(x) << ',' << imag(x) << ')';
 ```
 
-# 7.三大函数：拷贝构造，拷贝复制，析构.
-
+# 7. 三大函数：拷贝构造，拷贝赋值，析构.
+* ## class with pointer members 必须有copy ctor和 copy assignment operator
 ```cpp
 class String
 {
@@ -202,3 +202,44 @@ class String
         char* m_data;
 }
 ```
+
+## 7-1 ctor和dtor(构造函数和析构函数)
+* 析构函数：当对象离开作用域等需要销毁该对象时运行的函数。
+```cpp
+inline String::String(const char* cstr =0)
+{
+    if(cstr)
+    {
+        m_data = new char[strlen(cstr)+1];
+        strcpy(m_data,cstr);
+    }
+    else
+    {
+        m_data = new char[1];
+        *m_data = '\0';
+    }
+}
+
+inline String::~String()
+{
+    delete[] m_data;
+}
+```
+
+## 7-2 copy assignment operator(拷贝赋值函数)
+```cpp
+inline String& String::operator=(const String& str)
+{
+    if (this == &str)  //检测自我赋值
+        return *this;
+
+    delete[] m_data;
+    m_data = new char[ strlen(str.m_data)+1];
+    strcpy(m_data, str.m_data);
+    return *this;
+}
+```
+# 8. stack栈 heap堆 与内存管理
+
+## 8-1 stack heap
+* stack：是存在于膜作用域(scope)的一块内存空间(memory space). 例如当你调用函数，函数本身即会形成一个stack用来放置他所接受的参数，以及返回地址。
