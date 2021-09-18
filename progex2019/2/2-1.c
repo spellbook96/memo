@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+int main(void)
+{
+  int a, *p;   
+
+  a = 10;
+  printf("a: %d\n",a);
+  printf("&a: %p\n\n", &a);
+
+  p = &a;
+  printf("p: %p\n",p);
+  printf("*p: %d\n",*p);
+  printf("&p: %p\n\n",&p);
+
+  a=20;
+  printf("a: %d\n",a);
+  printf("&a: %p\n\n",&a);
+
+  printf("p: %p\n",p);
+  printf("*p:%d\n",*p);
+  printf("&p: %p\n",&p);
+
+  return 0;
+}

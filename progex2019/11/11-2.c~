@@ -1,0 +1,18 @@
+#include <stdio.h>
+#define MAXN (10)
+
+
+int main(void)
+{
+  int a[MAXN];
+  FILE *fp;
+  fp=fopen("numbers.dat","r"); 
+  int n=0;
+  while(fscanf(fp,"%d",&a[n])!=EOF)
+    n++;
+  n--;
+
+  printf("%s\n",n);
+  
+  return 0;
+}
