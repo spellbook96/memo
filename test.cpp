@@ -1,48 +1,29 @@
+#include<stdio.h>
+#include<math.h>
 #include <iostream>
 #include <string>
-
-using namespace std;
-
-int j = 1;
-const int *const p1 = &j;
-
-class A
+#include <cstring>
+int main()
 {
-    public:
-    A()
+    using namespace std;
+    int m=100;
+    int n=100;
+    bool **visited = new bool*[m];
+    cout << "123" << endl;
+    for(int i=0; i<m;++i)
     {
-        cout << "class A init..."<< endl;
+        cout << sizeof(visited[i]) << endl;
+        visited[i] = new bool[n];
+        memset(visited[i],false,sizeof(visited[i]));
     }
-    private:
-    int value=0;
-};
-
-class B
-{
-    public:
-    B()
+    
+    for(int i=0;i<m;++i)
     {
-        cout << "class B init..."<< endl;
+        for(int j=0;j<n;++j)
+            cout << visited[i][j] << " ";
+        
+        cout << endl;
     }
-};
 
-class C: public A
-{
-    protected:
-    B b;
-    public:
-    C()
-    {
-        cout << "class C init..." << endl;
-    }
-};
-
-int main(void)
-{
-    A a;
-    B b;
-    C c;
-    int d=0;
-    cout << sizeof(a)<<endl << sizeof(b)<< endl << sizeof(c) <<endl<<sizeof(d)<< endl;
     return 0;
 }
